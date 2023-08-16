@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "framwork": "node",
+  "framework": "node",
   "name": "probox",
   "builds": [
     {
