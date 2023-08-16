@@ -1,17 +1,21 @@
 {
   "version": 2,
-  "framework": "node",
-  "name": "probox",
   "builds": [
     {
-      "src": "index.js",
+      "src": "api/**/*.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/index.js"
+      "src": "/api/.*",
+      "dest": ".vercel/index.js"
     }
-  ]
+  ],
+  "env": {
+    "MYSQL_HOST": "localhost",
+    "MYSQL_USER": "root",
+    "MYSQL_PASSWORD": "",
+    "MYSQL_DATABASE": "probox"
+  }
 }
