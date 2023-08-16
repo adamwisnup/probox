@@ -18,9 +18,10 @@ const getTelemetryController = async (req, res) => {
       data: getData,
     });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while fetching telemetry data." });
+    res.status(500).json({
+      message: "Server Error",
+      error: error.message,
+    });
   }
 };
 

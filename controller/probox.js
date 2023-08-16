@@ -46,7 +46,10 @@ const fetchTelemetryData = async () => {
       await insertHistory(UID, status, tap, timestamp);
     }
   } catch (error) {
-    console.error("Error fetching telemetry data:", error);
+    res.status(500).json({
+      message: "Server Error",
+      error: error.message,
+    });
   }
 };
 
