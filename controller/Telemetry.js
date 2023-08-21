@@ -6,14 +6,14 @@ const getTelemetryController = async (req, res) => {
     const telemetryDB = await telemetry.getLatestTelemetryDB();
 
     const getData = {
-      uid: telemetryDB[0].uid,
-      status: telemetryData.status,
-      lock: telemetryData.lock, //? "buka" : "tutup"
-      timestamp: telemetryDB[0].timestamp,
+      uid: telemetryDB[0].uid || null,
+      status: telemetryData.status || null,
+      lock: telemetryData.lock || null, //? "buka" : "tutup"
+      timestamp: telemetryDB[0].timestamp || null,
     };
+
     res.status(200).json({
       status: 200,
-
       message: "success",
       data: getData,
     });
