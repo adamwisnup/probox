@@ -8,7 +8,7 @@ const dbConnection = require("../config/dbConfig");
 
 const getTelemetryData = async () => {
   const telemetry1Response = await axios.get(
-    `${iotCentralAppUrl}/api/preview/devices/${deviceId}/telemetry/box`,
+    `${iotCentralAppUrl}/api/preview/devices/${deviceId}/telemetry/Status`,
     {
       headers: {
         Authorization: `SharedAccessSignature ${sasToken}`,
@@ -16,7 +16,7 @@ const getTelemetryData = async () => {
     }
   );
   const telemetry2Response = await axios.get(
-    `${iotCentralAppUrl}/api/preview/devices/${deviceId}/telemetry/tap`,
+    `${iotCentralAppUrl}/api/preview/devices/${deviceId}/telemetry/Lock`,
     {
       headers: {
         Authorization: `SharedAccessSignature ${sasToken}`,
@@ -25,8 +25,8 @@ const getTelemetryData = async () => {
   );
 
   return {
-    Status: telemetry1Response.data.value,
-    Tap: telemetry2Response.data.value,
+    status: telemetry1Response.data.value,
+    lock: telemetry2Response.data.value,
   };
 };
 

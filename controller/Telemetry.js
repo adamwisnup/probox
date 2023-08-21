@@ -7,8 +7,8 @@ const getTelemetryController = async (req, res) => {
 
     const getData = {
       uid: telemetryDB[0].uid,
-      status: telemetryData.Status,
-      tap: telemetryData.Tap, //? "buka" : "tutup"
+      status: telemetryData.status,
+      lock: telemetryData.lock, //? "buka" : "tutup"
       timestamp: telemetryDB[0].timestamp,
     };
     res.status(200).json({
