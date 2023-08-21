@@ -1,11 +1,6 @@
 const axios = require("axios");
 const { format } = require("date-fns");
-const {
-  insertHistory,
-  getAllHistory,
-  // getRowCount,
-  // deleteHistoryData,
-} = require("../models/probox");
+const { insertHistory, getAllHistory } = require("../models/probox");
 const {
   iotCentralAppUrl,
   deviceId,
@@ -58,24 +53,9 @@ const fetchTelemetryData = async () => {
   }
 };
 
-// const manageHistoryData = async () => {
-//   try {
-//     const rowCount = await getRowCount();
-
-//     if (rowCount > 6) {
-//       const deleteCount = rowCount - 6;
-//       await deleteHistoryData(deleteCount);
-//       console.log(`${deleteCount} rows of history data deleted.`);
-//     }
-//   } catch (error) {
-//     console.error("Error managing history data:", error);
-//   }
-// };
-
 cron.schedule("* * * * * *", async () => {
   console.log("Fetching telemetry data...");
   await fetchTelemetryData();
-  // await manageHistoryData();
 });
 
 const getAllHistoryController = async (req, res) => {

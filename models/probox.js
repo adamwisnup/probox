@@ -25,34 +25,9 @@ const getAllHistory = async () => {
   }
 };
 
-// const getRowCount = async () => {
-//   const query = "SELECT COUNT(*) AS rowCount FROM history";
-
-//   try {
-//     const [results] = await dbConnection.query(query);
-//     const rowCount = results[0].rowCount;
-//     return rowCount;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-
-// const deleteHistoryData = async (deleteCount) => {
-//   const deleteQuery = `DELETE FROM history ORDER BY id ASC LIMIT ${deleteCount}`;
-
-//   try {
-//     const [result] = await dbConnection.query(deleteQuery);
-//     return result.affectedRows; // Mengembalikan jumlah baris yang dihapus
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-
 module.exports = {
   insertHistory,
   getAllHistory,
-  // getRowCount,
-  // deleteHistoryData,
 };
 
 // const supabase = require("../config/supabaseConfig");
