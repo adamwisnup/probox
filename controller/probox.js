@@ -51,36 +51,19 @@ const fetchTelemetryData = async () => {
       await insertHistory(uid, status, lock, timestamp);
     }
   } catch (error) {
-    res.status(500).json({
-      message: "Server Error",
-      error: error.message,
-    });
-  }
-};
-
-const manageHistoryData = async () => {
-  try {
-    const rowCount = await getRowCount();
-
-    if (rowCount > 6) {
-      const deleteCount = rowCount - 6;
-      await deleteHistoryData(deleteCount);
-      console.log(`${deleteCount} rows of history data deleted.`);
-    }
-  } catch (error) {
-    console.error("Error managing history data:", error);
+    console.error("Error fetching telemetry data:", error);
   }
 };
 
 cron.schedule("* * * * * *", async () => {
   console.log("Fetching telemetry data...");
   await fetchTelemetryData();
-  await manageHistoryData();
+  // await manageHistoryData();
 });
 
 const getAllHistoryController = async (req, res) => {
   try {
-    const historyData = await getAllHistory(); // Panggil fungsi getAllHistory untuk mendapatkan data dari database
+    const historyData = await getAllHistory();
 
     if (Array.isArray(historyData)) {
       res.json({

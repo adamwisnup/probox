@@ -4,7 +4,7 @@ const {
   deviceId,
   sasToken,
 } = require("../config/azureConfig");
-const dbConnection = require("../config/dbConfig");
+const supabase = require("../config/supabaseConfig");
 
 const getTelemetryData = async () => {
   const telemetry1Response = await axios.get(
@@ -31,14 +31,17 @@ const getTelemetryData = async () => {
 };
 
 const getLatestTelemetryDB = async () => {
-  const query = "SELECT uid, timestamp FROM history ORDER BY id DESC LIMIT 1";
+  const { data, error } = await supabase
+    .from("history")
+    .select("uid, timestamp")
+    .order("id", { ascending: false })
+    .limit(1);
 
-  try {
-    const [results] = await dbConnection.query(query);
-    return results;
-  } catch (error) {
+  if (error) {
     throw error;
   }
+
+  return data;
 };
 
 module.exports = {
